@@ -26,3 +26,18 @@ User.create!(name:"Example Seed",
                 activated_at:Time.zone.now
                 )
 end
+
+users = User.order(:created_at).take(6)
+50.times do
+  tip_content = Faker::Lorem.characters(50)
+  users.each {|user| user.tips.create!(content: tip_content) }
+end
+
+users.each do |user| 
+  user.tips.each do |tip| 
+    2.times do
+        content = Faker::Lorem.characters(50)
+        tip.reasons.create!(content: content)
+    end
+  end
+end

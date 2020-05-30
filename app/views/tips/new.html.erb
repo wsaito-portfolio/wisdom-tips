@@ -1,0 +1,27 @@
+<div class="row">
+    <%= render 'users/user_profile'  %>
+  <div class="col-md-8">
+    <%= form_for(@tip) do |f|  %>
+    <%= render 'shared/error_messages' , object: f.object%>
+        <div class="tip_form">
+            <h4>新しいTip</h4>
+            <%= f.text_field :content %>
+            <h4>理由</h4>
+            <ul>
+            <%= f.nested_fields_for :reasons  do |g| %>
+                <li>
+                    <%= g.text_field :content %>
+                    <%= g.remove_nested_fields_link '削除' ,class: 'btn btn-danger', role: 'button' %>
+                </li>
+            <% end %>
+            </ul>
+            <div class='text-left'>
+                <%= f.add_nested_fields_link :reasons, '理由の追加', class: 'btn btn-primary add_Reason', role: 'button' %>
+            </div>
+        </div>
+        <div class='commit mb-3'>
+            <%= f.submit 'Tipを投稿する' , class: 'btn btn-primary add_Reason'%>
+        </div>
+    <% end %>
+    </div>
+</div>

@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ /*
+ * bootstrap4対応用 
+ * @import 'bootstrap'
+ */
