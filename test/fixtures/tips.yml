@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  user: one
+
+two:
+  content: MyString
+  user: two
+
+tdd:
+  content: "Railsを使ったアプリ開発は、TDDで行うべきだ。"
+  created_at: <%= 10.minutes.ago %>
+  user: michael

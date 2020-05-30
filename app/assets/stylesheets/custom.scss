@@ -242,26 +242,30 @@ input {
     }
 }
 
-/* microposts */
+/* tips */
 
-.microposts {
+.tips {
   list-style: none;
   padding: 0;
-  li {
+  > li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+  }
+  li {
+      padding: 5px 0;
   }
   .user {
     margin-top: 5em;
     padding-top: 0;
   }
-  .content {
+  .tip_content {
     display: block;
     margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
+  }
+  .reason_content {
+    list-style-type: decimal;
+    display: block;
+    margin-left: 45px;
   }
   .timestamp {
     color: $gray-light;
@@ -289,3 +293,22 @@ span.picture {
   }
 }
 
+/* tips form */
+.tip_form {
+    input {
+        width:80%;
+        font-size:20px;
+        height: 20px;
+    }
+    .spacer {
+        width:40px;
+        display:inline-block;
+    }
+    .add_Reason{
+        margin-left:calc((100% - 40px) * 0.8 + 42px);
+    }
+}    
+
+.commit {
+        margin: 15px;
+}
