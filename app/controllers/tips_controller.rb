@@ -8,18 +8,19 @@ class TipsController < ApplicationController
     end
     
     def create
-        @user = current_user
         @tip = @user.tips.build(tip_params)
         if @tip.save!
             flash[:success] = "tipを投稿しました。"
-            redirect_to @user
+            redirect_to current_user
         else
             render 'new'
         end
     end
     
     def destroy
-    
+        @tip = Tip.find(params[:id]).destroy
+        flash[:success]= "Tip deleted"
+    redirect_to current_user
     end
     
     def update
