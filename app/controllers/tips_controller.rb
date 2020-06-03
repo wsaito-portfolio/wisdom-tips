@@ -8,20 +8,43 @@ class TipsController < ApplicationController
     end
     
     def create
-        @user = current_user
-        ActiveRecord::Base.transaction do
-            @tip = @user.tips.build(tip_params)
-            # @tip.user = current_user
-            @tip.save!
+        @tip = @user.tips.build(tip_params)
+        if @tip.save!
             flash[:success] = "tipを投稿しました。"
-            redirect_to @user
-        rescue => e 
+            redirect_to current_user
+        else
             render 'new'
         end
     end
     
     def destroy
+        @tip = Tip.find(params[:id]).destroy
+        flash[:success]= "Tip deleted"
+    redirect_to current_user
+    end
     
+    def update
+        @tip = Tip.find(params[:id])
+        @reason = @tip.reasons
+        @user = User.find(@tip.user_id)
+        if @tip.update_attributes(tip_params)
+          flash[:success] = "tipを更新しました。"
+          redirect_to @tip
+        else
+          render 'show'
+        end
+    end
+    
+    def show
+        @tip = Tip.find(params[:id])
+        @reason = @tip.reasons
+        @user = User.find(@tip.user_id)
+    end
+    
+    def edit
+        @tip = Tip.find(params[:id])
+        @reason = @tip.reasons
+        @user = User.find(@tip.user_id)
     end
     
     def tip_params
