@@ -1,0 +1,15 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+ <%= render "users/user_profile"  %>
+  <div class="col-md-8">
+    <div class="shelf_title border_line_bottom">
+      <h3>Tips (<%= @user.tips.count %>) > <%= @shelf.name %> (<%= @tips.count %>)</h3>
+      <% if !@shelf.id.nil? %>
+        <span class="shelf-edit"><%= link_to "編集", edit_shelf_path(@shelf.id)%></span>
+      <% end %>
+    </div>
+    <ol class="tips">
+      <%= render @tips %>
+    </ol>
+  </div>
+</div>

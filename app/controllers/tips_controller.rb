@@ -19,8 +19,8 @@ class TipsController < ApplicationController
     
     def destroy
         @tip = Tip.find(params[:id]).destroy
-        flash[:success]= "Tip deleted"
-    redirect_to current_user
+        flash[:success]= "Tipを削除しました。"
+        redirect_to current_user
     end
     
     def update
@@ -28,7 +28,7 @@ class TipsController < ApplicationController
         @reason = @tip.reasons
         @user = User.find(@tip.user_id)
         if @tip.update_attributes(tip_params)
-          flash[:success] = "tipを更新しました。"
+          flash[:success] = "Tipを更新しました。"
           redirect_to @tip
         else
           render 'show'
@@ -45,9 +45,10 @@ class TipsController < ApplicationController
         @tip = Tip.find(params[:id])
         @reason = @tip.reasons
         @user = User.find(@tip.user_id)
+        @shelf = @user.shelves
     end
     
     def tip_params
-        params.require(:tip).permit(:content,reasons_attributes:[:id,:content,:_destroy])
+        params.require(:tip).permit(:content, :shelf_id, reasons_attributes:[:id,:content,:_destroy])
     end
 end

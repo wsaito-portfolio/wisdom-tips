@@ -7,7 +7,21 @@
     </section>
     <section>
         <div class="text-center">
-         <%= link_to "Tipsを投稿する。", new_tip_path, class: "btn btn-primary align-center" %>
+            <%= link_to "Tipsを投稿する。", new_tip_path, class: "btn btn-primary align-center" %>
+            <%= link_to "Shelfを作成する。", new_shelf_path, class: "btn btn-primary align-center" %>
+        </div>
+    </section>
+    <section>
+        <div class="shelf_margin">
+            <ol class="shelves">
+                <li><%= link_to "すべて", @user %></li>
+                <li><%= link_to "未分類", shelf_path(:nil) %></li>
+                <% @user.shelves.each do |shelf| %>
+                    <% if !shelf.id.nil? %>
+                        <li><%= link_to shelf.name, shelf_path(shelf.id) %></li>
+                    <% end %>
+                <% end %>
+            </ol>
         </div>
     </section>
 </aside>

@@ -1,9 +1,9 @@
 <% provide(:title, @user.name) %>
 <div class="row">
- <%= render 'users/user_profile'  %>
+ <%= render "users/user_profile"  %>
   <div class="col-md-8">
     <% if @user.tips.any? %>
-      <h3>Tips (<%= @user.tips.count %>)</h3>
+      <h3 class="border_line_bottom">Tips (<%= @user.tips.count %>)</h3>
       <ol class="tips">
         <%= render @tips %>
       </ol>

@@ -1,0 +1,15 @@
+<%= form_for(@shelf) do |f|  %>
+    <%= render "shared/error_messages" , object: f.object%>
+    <div class="tip_form">
+        <h4><%= yield(:title) %></h4>
+        <%= f.text_field :name %>
+    </div>
+    <div class="button">
+        <%= f.submit yield(:button) , class: "btn btn-primary"%>
+    </div>
+    <% if !@tip.nil? && current_user?(@user) %>
+        <div class="button">
+            <%= button_to "Shelfを削除する", @shelf, method: :delete, data:{ confirm:"Shelfを削除してもよろしいですか?"},class:"btn btn-danger" %>
+        </div>
+    <% end %>
+<% end %>

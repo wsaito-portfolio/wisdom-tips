@@ -204,7 +204,7 @@ input {
   padding: 0;
   > li {
     padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
   .tips_detail {
     color:#333333;  
     text-decoration: none;
@@ -228,7 +228,6 @@ input {
   }
   .timestamp {
     color: $gray-light;
-    display: block;
     margin-left: 60px;
   }
   .gravatar {
@@ -238,7 +237,13 @@ input {
   }
   .edit {
       display: block;
+      float: right;
   }
+  
+  .tip_detail_title {
+    margin: 20px 0px 10px 0px;
+    height:45px;
+}
 }
 
 aside {
@@ -257,6 +262,7 @@ span.picture {
 
 /* tips form */
 .tip_form {
+    margin-left:20px;
     input {
         width:80%;
         font-size:20px;
@@ -269,8 +275,46 @@ span.picture {
     .add_Reason{
         margin-left:calc((100% - 40px) * 0.8 + 42px);
     }
+    .shelf_pulldown {
+        margin-top:15px;
+        width:calc((100% - 40px) * 0.8 + 42px);
+    }
 }    
 
 .button {
         margin: 15px;
 }
+
+/* shelf */
+.shelves {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0px 10px 10px;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+
+.shelf_margin {
+    margin-left: 20px;
+}
+
+.border_line_bottom {
+    padding: 10px 0;
+    border-bottom: 1px solid #e8e8e8;
+    h3 {
+        display: inline;
+    }
+    .shelf-edit {
+        text-align:right;
+        display:inline-block;
+        float:right;
+        margin-top: 10px;
+    }
+}
+
+.shelf_title {
+    margin: 20px 0px 10px 0px;
+    height:45px;
+}
+

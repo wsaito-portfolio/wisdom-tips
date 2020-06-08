@@ -1,8 +1,10 @@
 <% provide(:title, @user.name) %>
 <div class="row">
- <%= render 'users/user_profile'  %>
-  <div class="col-md-8 tips">
-      <h3>Tip detail</h3>
-        <%= render 'tip_detail' %>
+ <%= render "users/user_profile"  %>
+  <div class="col-md-8">
+      <h3 class="border_line_bottom">Tip Detail</h3>
+      <ol class="tips">
+        <%= render "tip_detail" %>
+      </ol>
   </div>
 </div>
