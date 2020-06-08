@@ -1,11 +1,11 @@
-<% provide(:title, 'Edit up') %>
+<% provide(:title, "Edit up") %>
 <% provide(:url, user_path) %>
-<% provide(:button_text,'Save changes') %>
+<% provide(:button_text,"Save changes") %>
 <h1>Update your profile</h1>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= render 'layouts/form' %>
+        <%= render "layouts/form" %>
         
         <div class="gravatar_edit">
             <%= gravatar_for @user %>

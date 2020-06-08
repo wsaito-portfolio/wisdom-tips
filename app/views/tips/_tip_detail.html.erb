@@ -2,17 +2,19 @@
   <%= link_to gravatar_for(@tip.user, size: 50), @tip.user %>
     <span class="user"><%= link_to @tip.user.name, @tip.user %></span>
     <span class="tip_content"><%= @tip.content %></span>
-      <ol class="reason_content" %>
+    <ol class="reason_content" %>
         <% @tip.reasons.each do  |reason| %>
           <li><%= reason.content %></li>
         <% end %>
-      </ol>
-    <span class="timestamp">
-        Posted <%= time_ago_in_words(@tip.created_at) %> ago.
-    </span>
-    <span class="edit text-right">
-      <% if current_user?(@user) %>
-          <%= link_to "編集", edit_tip_path(@tip), class:'text-right'  %>
-      <% end %>
-    </span>
+    </ol>
+    <div>
+        <span class="timestamp">
+            Posted <%= time_ago_in_words(@tip.created_at) %> ago.
+        </span>
+        <span class="edit text-right">
+              <% if current_user?(@user) %>
+                  <%= link_to "編集", edit_tip_path(@tip), class:"text-right"  %>
+              <% end %>
+        </span>
+    </div>
 </li>
