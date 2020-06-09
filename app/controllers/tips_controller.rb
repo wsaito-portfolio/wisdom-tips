@@ -5,9 +5,11 @@ class TipsController < ApplicationController
         @user = current_user
         @tip = @user.tips.new
         @reason = @tip.reasons.new
+        @shelf = @user.shelves
     end
     
     def create
+        @user = current_user
         @tip = @user.tips.build(tip_params)
         if @tip.save!
             flash[:success] = "tipを投稿しました。"
