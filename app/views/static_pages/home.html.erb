@@ -1,14 +1,27 @@
+<% if logged_in? %>
+  <% provide(:title, @user.name) %>
+  <div class="row">
+   <%= render "users/user_profile"  %>
+    <div class="col-md-8">
+      <%= render 'users/follow_form' if logged_in? %>
+      <% if @user.tips.any? %>
+        <h3 class="border_line_bottom">Tips (<%= @user.tips.count %>)</h3>
+        <ol class="tips">
+          <%= render @tips %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
+<% else %>
 <div class="center jumbotron">
-  <h1>Sample Apprication</h1>
-
-  <h2>
-    This is the home page for the
-    <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-
+  <h1>Tips Shelf</h1>
+  <p>
+    Tips ShelfはTips共有SNSサービスです。
+  </p>
+  <p>下のSign up now!から登録してTipsの共有をはじめよう!</p>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
 
 <%= link_to image_tag("rails.png", alt: "Rails logo"),
             "http://rubyonrails.org/" %>
+<% end %>
