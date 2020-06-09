@@ -2,6 +2,7 @@
 <div class="row">
  <%= render "users/user_profile"  %>
   <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
     <% if @user.tips.any? %>
       <h3 class="border_line_bottom">Tips (<%= @user.tips.count %>)</h3>
       <ol class="tips">
