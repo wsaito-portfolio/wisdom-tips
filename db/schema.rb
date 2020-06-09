@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200603110713) do
+ActiveRecord::Schema.define(version: 20200608102525) do
 
   create_table "reasons", force: :cascade do |t|
     t.string "content"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20200603110713) do
     t.datetime "updated_at", null: false
     t.index ["tip_id", "created_at"], name: "index_reasons_on_tip_id_and_created_at"
     t.index ["tip_id"], name: "index_reasons_on_tip_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "shelves", force: :cascade do |t|
