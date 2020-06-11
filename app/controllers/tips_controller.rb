@@ -31,7 +31,7 @@ class TipsController < ApplicationController
         @user = User.find(@tip.user_id)
         if @tip.update_attributes(tip_params)
           flash[:success] = "Tipを更新しました。"
-          redirect_to @tip
+          redirect_to [@user,@tip]
         else
           render 'show'
         end

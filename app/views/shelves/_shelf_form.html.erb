@@ -1,4 +1,4 @@
-<%= form_for(@shelf) do |f|  %>
+<%= form_for [@user,@shelf] do |f|  %>
     <%= render "shared/error_messages" , object: f.object%>
     <div class="tip_form">
         <h4><%= yield(:title) %></h4>

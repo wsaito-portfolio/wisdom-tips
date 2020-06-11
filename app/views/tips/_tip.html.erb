@@ -1,7 +1,7 @@
 <li id="tip-<%= tip.id %>">
   <%= link_to gravatar_for(tip.user, size: 50), tip.user %>
     <span class="user"><%= link_to tip.user.name, tip.user %></span>
-  <%= link_to tip, class:"tips_detail" do %>
+  <%= link_to user_tip_path(@user,tip.id), class:"tips_detail" do %>
     <span class="tip_content"><%= tip.content %></span>
       <ol class="reason_content" %>
         <% tip.reasons.each do  |reason| %>

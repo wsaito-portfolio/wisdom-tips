@@ -6,10 +6,12 @@
       </h1>
     </section>
     <section>
+        <% if current_user?(@user) %>
         <div class="text-center">
-            <%= link_to "Tipsを投稿する。", new_tip_path, class: "btn btn-primary align-center" %>
-            <%= link_to "Shelfを作成する。", new_shelf_path, class: "btn btn-primary align-center" %>
+            <%= link_to "Tipsを投稿する。", new_user_tip_path(@user), class: "btn btn-primary align-center" %>
+            <%= link_to "Shelfを作成する。", new_user_shelf_path(@user), class: "btn btn-primary align-center" %>
         </div>
+        <% end %>
     </section>
          <section class="stats">
         <%= render 'shared/stats' %>
@@ -18,10 +20,10 @@
         <div class="shelf_margin">
             <ol class="shelves">
                 <li><%= link_to "すべて", @user %></li>
-                <li><%= link_to "未分類", shelf_path(:nil) %></li>
+                <li><%= link_to "未分類", user_shelf_path(@user,:nil) %></li>
                 <% @user.shelves.each do |shelf| %>
                     <% if !shelf.id.nil? %>
-                        <li><%= link_to shelf.name, shelf_path(shelf.id) %></li>
+                        <li><%= link_to shelf.name, user_shelf_path(@user,shelf.id) %></li>
                     <% end %>
                 <% end %>
             </ol>

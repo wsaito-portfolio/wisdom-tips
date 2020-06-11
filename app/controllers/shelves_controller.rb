@@ -22,12 +22,12 @@ class ShelvesController < ApplicationController
     end
     
     def show
-        @user = current_user
-        #debugger
+        @user = User.find(params[:user_id]) 
         if params[:id] === "nil"
             @shelf = Shelf.new(name: "未分類")
             @tips = @user.tips.where(shelf_id: nil)
         else
+            #debugger
             @shelf = @user.shelves.find(params[:id])
             @tips = @user.tips.where(shelf_id: params[:id])
         end
