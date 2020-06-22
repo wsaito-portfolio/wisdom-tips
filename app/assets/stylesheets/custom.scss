@@ -15,6 +15,7 @@ $gray-medium-light: #eaeaea;
 
 body {
     padding-top: 60px;
+    font-size: 16.5px;
 }
 
 section {
@@ -60,7 +61,7 @@ h2 {
 }
 
 p {
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 1.7em;
 }
 
@@ -205,10 +206,10 @@ input {
   > li {
     padding: 10px 0;
     border-bottom: 1px solid #e8e8e8;
-  .tips_detail {
-    color:#333333;  
-    text-decoration: none;
-    }
+      .tips_detail {
+        color:#333333;  
+        text-decoration: none;
+        }
   }
   li {
       padding: 5px 0;
@@ -243,7 +244,10 @@ input {
   .tip_detail_title {
     margin: 20px 0px 10px 0px;
     height:45px;
-}
+    }
+    .detail {
+    margin-left:60px;
+    }
 }
 
 aside {
@@ -277,6 +281,9 @@ span.picture {
     }
     .shelf_pulldown {
         margin-top:15px;
+        width:calc((100% - 40px) * 0.8 + 42px);
+    }
+    .text_field {
         width:calc((100% - 40px) * 0.8 + 42px);
     }
 }    
@@ -358,3 +365,17 @@ span.picture {
   padding: 0;
 }
 
+.refer {
+    border: 1px solid #e8e8e8;
+    padding: 5px;
+    margin:5px;
+    width:calc(80% + 96px);
+    > li {
+        border-bottom: 0px;
+    }
+}
+
+/* profile */
+.profile {
+    word-wrap: break-word;
+}

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     end
     resources :tips
     resources :shelves
+    get '/tips/refer/:id', to: 'tips#refer'
+    resources :user_detail
   end
   resources :account_activations,only: [:edit]
   resources :password_resets, only:[:new,:create,:edit,:update]

@@ -16,9 +16,23 @@
         <div class="text-left">
             <%= f.add_nested_fields_link :reasons, "理由の追加", class: "btn btn-primary add_Reason", role: "button" %>
         </div>
+        <h4>Shelf</h4>
         <div class="shelf_pulldown">
             <%= f.collection_select :shelf_id, @shelf.select("id,name") ,:id,:name ,include_blank: "未分類" %>
         </div>
+        <h4>詳細</h4>
+        <div class="text_field">
+            <%= f.text_area :detail,size: "20x10" %>
+        </div>
+        <% if !@refered_tip.nil? %>
+            <%= f.hidden_field :refer_id, value: @refered_tip.id %>
+            <div >
+                <h4>引用するTip</h4>
+                <div class="tips refer">
+                    <%= render partial: "tip_detail",  locals:{tip: @refered_tip,user: @refered_user}%>
+                </div>
+            </div>
+        <% end %>
     </div>
     <div class="button">
         <%= f.submit yield(:button) , class: "btn btn-primary"%>

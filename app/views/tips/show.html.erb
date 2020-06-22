@@ -4,7 +4,13 @@
   <div class="col-md-8">
       <h3 class="border_line_bottom">Tip Detail</h3>
       <ol class="tips">
-        <%= render "tip_detail" %>
+        <%= render partial: "tip_detail",  locals:{tip: @tip,user: @user}%>
       </ol>
+       <% if !@refered_tip.nil? %>
+            <h4>引用したTip</h4>
+            <div class="tips refer">
+                <%= render partial: "tip",  locals:{tip: @refered_tip,user: @refered_user}%>
+            </div>
+        <% end %>
   </div>
 </div>
