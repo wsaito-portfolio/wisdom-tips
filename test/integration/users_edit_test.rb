@@ -24,10 +24,15 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
     name = "foo"
     email = "foo@bar.com"
+    detail_id = @user.user_detail.id
     patch user_path(@user),params: { user:{name:name,
-                          email:email,
-                          password:"",
-                          password_confirmation:""}}
+                            email:email,
+                            password:"",
+                            password_confirmation:"",
+                            user_detail_attributes:{id: detail_id,
+                            profile_description:"hoge"}
+      }
+    }
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload
@@ -41,10 +46,16 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_user_url(@user)
     name = "foo"
     email = "foo@bar.com"
-    patch user_path(@user),params: { user:{name:name,
-                          email:email,
-                          password:"",
-                          password_confirmation:""}}
+    detail_id = @user.user_detail.id
+    patch user_path(@user),params: { user:{name: name,
+                          email: email,
+                          password: "",
+                          password_confirmation: "",
+                          user_detail_attributes:{id: detail_id,
+                            profile_description:"hoge"}
+      }
+    }
+    
     assert_not flash.empty?
     assert_redirected_to @user
     @user.reload

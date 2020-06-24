@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :tips
     has_many :shelves
+    has_one :user_detail
     has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -9,9 +10,11 @@ class User < ApplicationRecord
     has_many :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
-    has_many :followers, through: :passive_relationships, source: :follower                               
+    has_many :followers, through: :passive_relationships, source: :follower
+    has_many :likes
     before_save { email.downcase!}
     before_create :create_activation_digest
+    accepts_nested_attributes_for :user_detail,allow_destroy: true
     
     validates :name,presence: true,length: {maximum: 50}
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -74,7 +77,7 @@ class User < ApplicationRecord
      # ユーザーのステータスフィードを返す
     def feed
         following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-        Tip.where("user_id IN (#{following_ids})  OR user_id = :user_id", user_id: id)
+        Tip.where("user_id IN (#{following_ids})  OR user_id = :user_id", user_id: id).where(delete_flg: false)
     end
     
       # ユーザーをフォローする
@@ -84,7 +87,7 @@ class User < ApplicationRecord
     
     # ユーザーをフォロー解除する
     def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+        active_relationships.find_by(followed_id: other_user.id).destroy
     end
     
     # 現在のユーザーがフォローしてたらtrueを返す

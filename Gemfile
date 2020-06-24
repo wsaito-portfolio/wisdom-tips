@@ -15,6 +15,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'nested_form_fields'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'font-awesome-sass', '~> 5.4.1'
 
 #bootstrap4変更用
 #gem 'bootstrap', '~> 4.1.1'

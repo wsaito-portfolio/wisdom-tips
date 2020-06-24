@@ -34,12 +34,14 @@ users = User.order(:created_at).take(6)
 end
 
 users.each do |user| 
-  user.tips.each do |tip| 
-    2.times do
-        content = Faker::Lorem.characters(50)
-        tip.reasons.create!(content: content)
+    user.tips.each do |tip| 
+        2.times do
+            content = Faker::Lorem.characters(50)
+            tip.reasons.create!(content: content)
+        end
     end
-  end
+    
+    user.create_user_detail!(profile_description: Faker::Lorem.characters(50))
 end
 
 # リレーションシップ
