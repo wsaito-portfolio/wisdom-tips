@@ -1,9 +1,10 @@
 class StaticPagesController < ApplicationController
   def home
     if logged_in?
-      @user = current_user
-      @user_detail = @user.user_detail
-      @feed_items = current_user.feed
+        @user = current_user
+        @user_detail = @user.user_detail
+        @feed_items = current_user.feed
+        @likes = @user.likes
     end
   end
 

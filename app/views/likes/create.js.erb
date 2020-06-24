@@ -1,0 +1,1 @@
+$("#tip-<%= @tip.id %> .like_button").html("<%= escape_javascript(render partial: 'tips/like_cancel_form', locals:{tip: @tip})  %>")

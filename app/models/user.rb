@@ -10,7 +10,8 @@ class User < ApplicationRecord
     has_many :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
-    has_many :followers, through: :passive_relationships, source: :follower                               
+    has_many :followers, through: :passive_relationships, source: :follower
+    has_many :likes
     before_save { email.downcase!}
     before_create :create_activation_digest
     accepts_nested_attributes_for :user_detail,allow_destroy: true
@@ -86,7 +87,7 @@ class User < ApplicationRecord
     
     # ユーザーをフォロー解除する
     def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+        active_relationships.find_by(followed_id: other_user.id).destroy
     end
     
     # 現在のユーザーがフォローしてたらtrueを返す

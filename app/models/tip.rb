@@ -1,5 +1,6 @@
 class Tip < ApplicationRecord
   has_many :reasons, dependent: :destroy
+  has_many :likes
   belongs_to :shelf, optional: true
   belongs_to :tip, optional: true
   belongs_to :user

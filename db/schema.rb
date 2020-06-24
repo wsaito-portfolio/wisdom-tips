@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200617092408) do
+ActiveRecord::Schema.define(version: 20200622064303) do
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tip_id"], name: "index_likes_on_tip_id"
+    t.index ["user_id", "tip_id"], name: "index_likes_on_user_id_and_tip_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "reasons", force: :cascade do |t|
     t.string "content"

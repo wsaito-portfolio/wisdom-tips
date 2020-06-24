@@ -12,3 +12,9 @@ tdd:
   content: "Railsを使ったアプリ開発は、TDDで行うべきだ。"
   created_at: <%= 10.minutes.ago %>
   user: michael
+
+archers_tip:
+  content: "時間は大切に使うべきである。"
+  created_at: <%= 10.minutes.ago %>
+  user: archer
+  

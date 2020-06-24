@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @user_detail = @user.user_detail
+        @likes = @user.likes
         @tips = @user.tips.where(delete_flg: false)
         redirect_to root_url and return unless @user.activated?
     end
@@ -49,7 +50,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         ActiveRecord::Base.transaction do
             @user.update_attributes!(user_params)
-            #debugger
             @user.user_detail.update_attributes!(profile_description: user_params[:user_detail_attributes][:profile_description])
             flash[:success] = "Prifile updated"
             redirect_to @user

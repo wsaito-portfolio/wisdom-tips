@@ -9,3 +9,10 @@ one: {}
 #
 two: {}
 # column: value
+michael_details: 
+    profile_description: "自己紹介"
+    user: michael
+    
+archer_details:
+    profile_description: "自己紹介"
+    user: archer
