@@ -18,16 +18,17 @@
                  Posted <%= time_ago_in_words(tip.created_at) %> ago.
             </span>
             <% if tip.user_id != current_user.id %>
-                <span class="edit text-right">
-                    <%= link_to "引用する", user_tip_refer_path(@user,tip) , class:"text-right"  %>
-                    <div class="like_button">
-                        <% if @likes.nil?||!@likes.where(tip_id: tip.id).any? %>
-                            <%= render partial: "tips/like_form", locals:{tip: tip} %>
-                        <% else %>
-                            <%= render partial: "tips/like_cancel_form", locals:{tip: tip} %>
-                        <% end %>
-                    </div>
+                <%= link_to user_tip_refer_path(@user,tip) , class:"text-right btn btn-default btn-s-md" do %>
+                    <i class="fas fa-retweet"></i>
+                <% end %>
+                <span class="like_button">
+                    <% if @likes.nil?||!@likes.where(tip_id: tip.id).any? %>
+                        <%= render partial: "tips/like_form", locals:{tip: tip} %>
+                    <% else %>
+                        <%= render partial: "tips/like_cancel_form", locals:{tip: tip} %>
+                    <% end %>
                 </span>
+               
             <% end %>
         </div>
     <% end %>

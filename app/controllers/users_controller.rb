@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     end
     
     def update
+        
         @user = User.find(params[:id])
         ActiveRecord::Base.transaction do
             @user.update_attributes!(user_params)
