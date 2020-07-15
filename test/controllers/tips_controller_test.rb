@@ -96,13 +96,22 @@ class TipsControllerTest < ActionDispatch::IntegrationTest
     
     test "should not update when wrong user" do
         log_in_as(@other_user)
-        patch user_tip_path(@user,@tip)
+        t_content = "hogehoge"
+        r_content = "gehogeho"
+         shelf_id = "1"
+        patch user_tip_path(@user,@tip), params:{   user_id: @user.id,
+                                                    tip:{content: t_content, reason: {content: r_content}},
+                                                    shelf_id: shelf_id
+        }
+        assert_not_equal @tip.content, t_content
+        assert_not_equal @tip.shelf_id, shelf_id
+        assert_not_equal @reason.content, r_content
         assert_redirected_to root_url
     end
 
     #show
     test "should get show" do
-        log_in_as(@user)
+        #log_in_as(@user)
         get user_tip_path(@user,@tip)
         assert_response :success
     end

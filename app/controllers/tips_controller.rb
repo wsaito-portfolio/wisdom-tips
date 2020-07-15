@@ -23,7 +23,6 @@ class TipsController < ApplicationController
     end
     
     def destroy
-        
         @tip = Tip.find(params[:id]).toggle(:delete_flg)
         flash[:success]= "Tipを削除しました。"
         redirect_to current_user
@@ -54,7 +53,6 @@ class TipsController < ApplicationController
         rescue => e
             render 'show'
         end
- 
     end
     
     def show
@@ -62,7 +60,6 @@ class TipsController < ApplicationController
         @reason = @tip.reasons
         @user = User.find(@tip.user_id)
         @user_detail = @user.user_detail
-
         if !@tip.refer_id.nil?
             @refered_tip = Tip.find(@tip.refer_id)
             @refered_user = User.find(@refered_tip.user_id)
@@ -97,7 +94,4 @@ class TipsController < ApplicationController
         def tip_params_update
             params.require(:tip).permit(:content, :shelf_id, :refer_id, :parent_id,:detail,reasons_attributes:[:content,:_destroy])
         end
-        
-        
-    
 end
