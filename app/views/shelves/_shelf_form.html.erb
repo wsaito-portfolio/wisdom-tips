@@ -7,9 +7,9 @@
     <div class="button">
         <%= f.submit yield(:button) , class: "btn btn-primary"%>
     </div>
-    <% if !@tip.nil? && current_user?(@user) %>
-        <div class="button">
-            <%= button_to "Shelfを削除する", @shelf, method: :delete, data:{ confirm:"Shelfを削除してもよろしいですか?"},class:"btn btn-danger" %>
-        </div>
-    <% end %>
+<% end %>
+<% if !@shelf.id.nil? &&current_user?(@user) %>
+    <div class="button">
+        <%= button_to "Shelfを削除する", [@user,@shelf], method: :delete, data:{ confirm:"Shelfを削除してもよろしいですか?"},class:"btn btn-danger" %>
+    </div>
 <% end %>

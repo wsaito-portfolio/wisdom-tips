@@ -1,5 +1,7 @@
 class LikesController < ApplicationController
-  
+    before_action :logged_in_user
+    before_action :correct_user_id
+    
     def create
         like = Like.new(user_id: params[:user_id], tip_id: params[:tip_id])
         like.save!

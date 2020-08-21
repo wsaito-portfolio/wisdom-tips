@@ -5,6 +5,7 @@ class ReasonTest < ActiveSupport::TestCase
     @user = users(:michael)
     @tip = @user.tips.build(content:"tipsの内容",id: 100)
     @reason = @tip.reasons.build(content:"tipsの理由")
+    
   end 
   
   test "should be valid" do

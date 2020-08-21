@@ -1,5 +1,6 @@
 class TipsController < ApplicationController
-    before_action :logged_in_user,only: [:create,:destroy]
+    before_action :logged_in_user,only: [:new,:create,:destroy,:edit,:update,:refer]
+    before_action :correct_user_id,only:[:new,:create,:destroy,:edit,:update,:refer]
     
     def new
         @user = current_user
@@ -28,6 +29,7 @@ class TipsController < ApplicationController
     end
     
     def update
+        
         @tip = Tip.find(params[:id])
         @user = User.find(@tip.user_id)
         
@@ -51,7 +53,6 @@ class TipsController < ApplicationController
         rescue => e
             render 'show'
         end
- 
     end
     
     def show
@@ -59,12 +60,10 @@ class TipsController < ApplicationController
         @reason = @tip.reasons
         @user = User.find(@tip.user_id)
         @user_detail = @user.user_detail
-        @likes = @user.where(user_id: @user.id)
         if !@tip.refer_id.nil?
             @refered_tip = Tip.find(@tip.refer_id)
             @refered_user = User.find(@refered_tip.user_id)
         end
-        
     end
     
     def edit
@@ -87,6 +86,14 @@ class TipsController < ApplicationController
         @shelf = @user.shelves
     end
     
+    def auto_load
+        @user = User.find(params[:user_id])
+        @tips = Tip.where(user_id: params[:user_id]).limit(20).offset(params[:num])
+        respond_to do |format|
+            format.js
+        end
+    end
+    
     private
         def tip_params
             params.require(:tip).permit(:content, :shelf_id, :refer_id,:detail,reasons_attributes:[:id,:content,:_destroy])
@@ -95,5 +102,4 @@ class TipsController < ApplicationController
         def tip_params_update
             params.require(:tip).permit(:content, :shelf_id, :refer_id, :parent_id,:detail,reasons_attributes:[:content,:_destroy])
         end
-    
 end

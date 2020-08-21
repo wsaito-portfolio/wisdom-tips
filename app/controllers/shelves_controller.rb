@@ -1,4 +1,6 @@
 class ShelvesController < ApplicationController
+    before_action :logged_in_user,only: [:new,:create,:destroy,:edit,:update]
+    before_action :correct_user_id,only:[:new,:create,:destroy,:edit,:update]
     
     def new
         @user = current_user
@@ -19,6 +21,7 @@ class ShelvesController < ApplicationController
     
     def edit
         @user = current_user
+        @user_detail = @user.user_detail
         @shelf = @user.shelves.find(params[:id])
     end
     
@@ -33,6 +36,26 @@ class ShelvesController < ApplicationController
             @tips = @user.tips.where(shelf_id: params[:id])
         end
         render 
+    end
+    
+    def destroy
+        @shelf = @user.shelves.find(params[:id])
+        deleted_shlef = @shelf.name
+        tip = Tip.where(shelf_id: @shelf.id)
+        tip.update_all(shelf_id: nil)
+        @shelf.destroy
+        flash[:success]= deleted_shlef + "を削除しました。"
+        redirect_to current_user
+    end
+    
+    def update
+        @shelf = @user.shelves.find(params[:id])
+        if @shelf.update_attributes(shelf_params)
+            flash[:success] = "Shelfを更新しました。"
+            redirect_to @user
+        else
+            render 'edit'
+        end
     end
     
     private

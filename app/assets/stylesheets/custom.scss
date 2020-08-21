@@ -236,10 +236,6 @@ input {
     margin-right: 10px;
     margin-top: 5px;
   }
-  .edit {
-      display: block;
-      float: right;
-  }
   
   .tip_detail_title {
     margin: 20px 0px 10px 0px;
@@ -383,4 +379,14 @@ span.picture {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f007";
+}
+
+.like_button {
+}
+
+.like_form {
+    display:inline;
+}
+.heart {
+    color:red;
 }

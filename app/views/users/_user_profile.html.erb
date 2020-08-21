@@ -4,7 +4,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
     </h1>
-        <div class="profile">
+        <div class="profile" , data-id= <%= @user.id %> >
             <% if !@user_detail.profile_description.nil? %>
                 <%= simple_format(@user_detail.profile_description) %>
             <% end %>
