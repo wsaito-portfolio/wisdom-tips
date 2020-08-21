@@ -1,0 +1,3 @@
+<% @tips.each do |tip| %>
+    $(".tips").append("<%= escape_javascript(render partial: 'tips/tip',locals:{tip: tip})  %>")
+<% end %>

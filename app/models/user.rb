@@ -77,7 +77,12 @@ class User < ApplicationRecord
      # ユーザーのステータスフィードを返す
     def feed
         following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-        Tip.where("user_id IN (#{following_ids})  OR user_id = :user_id", user_id: id).where(delete_flg: false)
+        Tip.where("user_id IN (#{following_ids})  OR user_id = :user_id", user_id: id).where(delete_flg: false).limit(20)
+    end
+    
+    def add_feed(offset)
+        following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+        Tip.where("user_id IN (#{following_ids})  OR user_id = :user_id", user_id: id).where(delete_flg: false).limit(20).offset(offset.to_i)
     end
     
       # ユーザーをフォローする

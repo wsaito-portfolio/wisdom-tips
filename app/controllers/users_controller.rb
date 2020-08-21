@@ -4,14 +4,14 @@ class UsersController < ApplicationController
     before_action :admin_user,only: :destroy
     
     def index
-        @users = User.where(activated: true).paginate(page: params[:page])
+        @users = User.where(activated: true).limit(20)
     end
     
     def show
         @user = User.find(params[:id])
         @user_detail = @user.user_detail
         @likes = @user.likes
-        @tips = @user.tips.where(delete_flg: false)
+        @tips = @user.tips.where(delete_flg: false).limit(20)
         redirect_to root_url and return unless @user.activated?
     end
     
@@ -76,6 +76,15 @@ class UsersController < ApplicationController
         @user    = User.find(params[:id])
         @users = @user.followers.paginate(page: params[:page])
         render 'show_follow'
+    end
+    
+    def auto_load
+        from = params[:num].to_i + 1
+        to   = params[:num].to_i + 20
+        @users = User.where(id: from..to)
+        respond_to do |format|
+            format.js
+        end
     end
     
     private

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/help', to:'static_pages#help'
   get '/about', to:'static_pages#about'
   get '/contact', to:'static_pages#contact'
+  get '/auto_load', to:'static_pages#auto_load'
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
@@ -19,8 +20,14 @@ Rails.application.routes.draw do
     member do
         get :following, :followers
     end
+    collection do
+        get :auto_load
+    end
     resources :tips ,only:[:new,:create,:destroy,:update,:show,:edit] do
         get :refer
+        collection do
+            get :auto_load
+        end
     end
     resources :shelves
     resources :user_detail

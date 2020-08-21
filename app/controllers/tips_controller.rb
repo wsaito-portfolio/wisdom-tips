@@ -86,6 +86,14 @@ class TipsController < ApplicationController
         @shelf = @user.shelves
     end
     
+    def auto_load
+        @user = User.find(params[:user_id])
+        @tips = Tip.where(user_id: params[:user_id]).limit(20).offset(params[:num])
+        respond_to do |format|
+            format.js
+        end
+    end
+    
     private
         def tip_params
             params.require(:tip).permit(:content, :shelf_id, :refer_id,:detail,reasons_attributes:[:id,:content,:_destroy])
