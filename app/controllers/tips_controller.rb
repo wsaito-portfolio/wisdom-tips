@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
     before_action :logged_in_user,only: [:new,:create,:destroy,:edit,:update,:refer]
-    before_action :correct_user_id,only:[:new,:create,:destroy,:edit,:update,:refer]
+    before_action :correct_user_id,only:[:new,:create,:destroy,:edit,:update]
     
     def new
         @user = current_user

@@ -1,4 +1,4 @@
-<%= form_for [@user,@tip] do |f|  %>
+<%= form_for([@user,@tip]) do |f|  %>
     <%= render "shared/error_messages" , object: f.object%>
     <h3 class="border_line_bottom"><%= yield(:title) %></h3>
     <div class="tip_form">

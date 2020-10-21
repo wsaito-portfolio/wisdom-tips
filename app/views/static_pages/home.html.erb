@@ -2,7 +2,7 @@
   <% provide(:title, @user.name) %>
   <div class="row">
    <%= render "users/user_profile"  %>
-    <div class="col-md-8">
+    <div class="col-sm-8">
       <%= render 'users/follow_form' if logged_in? %>
       <% if @feed_items %>
         <h3 class="border_line_bottom">Time Line</h3>

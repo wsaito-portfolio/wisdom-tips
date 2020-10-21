@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="row">
  <%= render "users/user_profile"  %>
-  <div class="col-md-8">
+  <div class="col-sm-8">
     <div class="shelf_title border_line_bottom">
       <h3>Tips (<%= @user.tips.count %>) > <%= @shelf.name %> (<%= @tips.count %>)</h3>
       <% if !@shelf.id.nil? %>

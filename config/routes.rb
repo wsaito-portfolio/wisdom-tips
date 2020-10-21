@@ -16,6 +16,12 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy' 
+  get '/search', to: 'search#index'
+  get '/search/auto_load_tips', to: 'search#auto_load_tips'
+  get '/search/auto_load_users', to: 'search#auto_load_users'
+  
+  
+  
   resources :users ,only:[:new,:create,:destroy,:update,:show,:edit,:index] do
     member do
         get :following, :followers
@@ -31,9 +37,13 @@ Rails.application.routes.draw do
     end
     resources :shelves
     resources :user_detail
-  end 
+  end
   
-  resources :account_activations,only: [:edit]
+  resources :account_activations ,only: [:edit] do
+    collection do
+        get :tutorial
+    end
+  end
   resources :password_resets, only:[:new,:create,:edit,:update]
   resources :relationships,       only: [:create, :destroy]
   resources :likes,       only: [:create, :destroy]

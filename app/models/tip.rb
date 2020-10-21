@@ -9,4 +9,8 @@ class Tip < ApplicationRecord
   validates :content,presence: true,length: {maximum: 100}
   validates :reasons, length: { minimum: 1 }
   accepts_nested_attributes_for :reasons,allow_destroy: true
+  
+  #検索用scope
+  scope :search, ->(search) {where('content LIKE(?)', "%#{search}%")}
+
 end

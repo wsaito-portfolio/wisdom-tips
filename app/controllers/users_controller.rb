@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         @likes = @user.likes
         @tips = @user.tips.where(delete_flg: false).limit(20)
         redirect_to root_url and return unless @user.activated?
+        flash[:activate] = "Acount avtivated"
     end
     
     def show_feed
