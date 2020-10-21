@@ -5,7 +5,7 @@ class AccountActivationsController < ApplicationController
         if user && !user.activated? && user.authenticated?(:activation, params[:id])
             user.activate
             log_in user
-            flash[:success] = "Acount avtivated"
+            flash[:activate] = "Acount avtivated"
             redirect_to user
         else
             flash[:danger]= "Invalid activation link"
@@ -13,4 +13,9 @@ class AccountActivationsController < ApplicationController
         end
     end
     
+    def tutorial
+        respond_to do |format|
+            format.js
+        end
+    end
 end

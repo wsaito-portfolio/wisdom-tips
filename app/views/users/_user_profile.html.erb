@@ -1,4 +1,4 @@
-<aside class="col-md-4">
+<aside class="col-sm-4">
     <section class="user_info">
     <h1>
         <%= gravatar_for @user %>
@@ -13,8 +13,12 @@
     <section>
         <% if current_user?(@user) %>
         <div class="text-center">
-            <%= link_to "Tipsを投稿する。", new_user_tip_path(@user), class: "btn btn-primary align-center" %>
-            <%= link_to "Shelfを作成する。", new_user_shelf_path(@user), class: "btn btn-primary align-center" %>
+            <div class="col-md-2" >
+                <%= link_to "Tipsを投稿", new_user_tip_path(@user), class: "btn btn-primary align-center" %>
+            </div>
+            <div class="col-md-2">
+                <%= link_to "Shelfを作成", new_user_shelf_path(@user), class: "btn btn-primary align-center" %>
+            </div>
         </div>
         <% end %>
     </section>

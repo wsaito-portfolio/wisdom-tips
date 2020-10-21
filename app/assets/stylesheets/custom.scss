@@ -83,6 +83,17 @@ p {
     }
 }
 
+.search_form {
+    
+    margin-top:0px;
+    margin-bottom:0px;
+}
+.search_field {
+    width:80%;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
 /* footer */
 
 footer {
@@ -389,4 +400,34 @@ span.picture {
 }
 .heart {
     color:red;
+}
+
+.modal {
+    background: 0;
+    padding: 20px;
+    border-radius: 4px;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    z-index: 1041;
+}
+
+.modal-content {
+    height: 80vh;
+}
+.modal-header {
+    height: 65px;
+    border-bottom: 0px;
+}
+.modal-footer {
+    height: 65px;
+    border-top: 0px;
+}
+.modal-body {
+    height: calc(80vh - 130px);
+}
+#modal1 {
+    transition: transform 0.4s;
 }

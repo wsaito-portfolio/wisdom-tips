@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_many :tips
     has_many :shelves
-    has_one :user_detail
+    has_one :user_detail,dependent:   :destroy
     has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
@@ -11,7 +11,7 @@ class User < ApplicationRecord
                                    foreign_key: "followed_id",
                                    dependent:   :destroy
     has_many :followers, through: :passive_relationships, source: :follower
-    has_many :likes
+    has_many :likes,dependent:   :destroy
     before_save { email.downcase!}
     before_create :create_activation_digest
     accepts_nested_attributes_for :user_detail,allow_destroy: true
@@ -99,7 +99,15 @@ class User < ApplicationRecord
     def following?(other_user)
     following.include?(other_user)
     end
-        
+    
+    def self.search(search)
+        return User.all unless search
+        Sample.where('name LIKE(?)', "%#{search}%")
+    end
+    
+    #検索用scope
+    scope :search, ->(search) {where('name LIKE(?)', "%#{search}%")}
+   
     private
         def downcase_email
             self.email = email.downcase

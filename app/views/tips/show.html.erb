@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="row">
  <%= render "users/user_profile"  %>
-  <div class="col-md-8">
+  <div class="col-sm-8">
       <h3 class="border_line_bottom">Tip Detail</h3>
       <ol class="tips">
         <%= render partial: "tip_detail",  locals:{tip: @tip,user: @user}%>
