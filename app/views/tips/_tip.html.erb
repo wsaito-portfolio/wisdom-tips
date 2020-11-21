@@ -10,7 +10,7 @@
         </span>
         <ol class="reason_content" %>
             <% tip.reasons.each do  |reason| %>
-                <li><%= reason.content %></li>
+                <li class="text-break"><%= reason.content %></li>
             <% end %>
         </ol>
         <div>
@@ -18,7 +18,7 @@
                  Posted <%= time_ago_in_words(tip.created_at) %> ago.
             </span>
             <% if logged_in? && (tip.user_id != current_user.id) %>
-                <%= link_to user_tip_refer_path(@user,tip) , class:"text-right btn btn-default btn-s-md" do %>
+                <%= link_to user_tip_refer_path(@user,tip) , class:"text-right btn btn-light" do %>
                     <i class="fas fa-retweet"></i>
                 <% end %>
                 <span class="like_button">

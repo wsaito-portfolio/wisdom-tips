@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/help', to:'static_pages#help'
   get '/about', to:'static_pages#about'
   get '/contact', to:'static_pages#contact'
+  get '/news', to:'static_pages#news'
   get '/auto_load', to:'static_pages#auto_load'
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'
@@ -19,15 +20,13 @@ Rails.application.routes.draw do
   get '/search', to: 'search#index'
   get '/search/auto_load_tips', to: 'search#auto_load_tips'
   get '/search/auto_load_users', to: 'search#auto_load_users'
-  
-  
-  
+ 
   resources :users ,only:[:new,:create,:destroy,:update,:show,:edit,:index] do
     member do
-        get :following, :followers
+        get :following, :followers, :password
     end
     collection do
-        get :auto_load
+        get :auto_load, :auto_load_followers, :auto_load_followings
     end
     resources :tips ,only:[:new,:create,:destroy,:update,:show,:edit] do
         get :refer

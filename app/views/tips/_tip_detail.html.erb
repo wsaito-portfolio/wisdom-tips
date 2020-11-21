@@ -11,8 +11,11 @@
           <li><%= reason.content %></li>
         <% end %>
     </ol>
-    <div class="detail">
-        <%= simple_format(tip.detail) %>
+    <div class="detail pt-3">
+        詳細
+        <div class="pl-4">
+            <%= simple_format(tip.detail) %>
+        </div>
     </div>
     <div>
         <span class="timestamp">

@@ -1,28 +1,42 @@
 <%= form_for([@user,@tip]) do |f|  %>
     <%= render "shared/error_messages" , object: f.object%>
     <h3 class="border_line_bottom"><%= yield(:title) %></h3>
-    <div class="tip_form">
-        <h4>タイトル</h4>
-        <%= f.text_field :content %>
-        <h4>理由</h4>
-        <ul>
-        <%= f.nested_fields_for :reasons  do |g| %>
-            <li>
-                <%= g.text_field :content %>
-                <%= g.remove_nested_fields_link "削除" ,class: "btn btn-danger", role: "button" %>
-            </li>
-        <% end %>
-        </ul>
-        <div class="text-left">
-            <%= f.add_nested_fields_link :reasons, "理由の追加", class: "btn btn-primary add_Reason", role: "button" %>
+    <div class="ml-4">
+        <div class="form-group">
+            <h4>タイトル</h4>
+            <%= f.text_field :content, class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <h4>理由</h4>
+            <ul>
+            <%= f.nested_fields_for :reasons  do |g| %>
+                <li>
+                    <div class="form-row">
+                        <div class="col-9 mb-2">
+                            <%= g.text_field :content , class: "form-control"  %>
+                        </div>
+                        <div class ="col-3 mb-2">
+                           <%= g.remove_nested_fields_link "削除" ,class: "btn btn-danger form-control", role: "button" %>
+                        </div>
+                    </div>
+                </li>
+            <% end %>
+            </ul>
+            <div class="form-row">
+                <div class="col-4 col-md-3 ml-auto">
+                    <%= f.add_nested_fields_link :reasons, "理由の追加", class: "btn btn-primary form-control", role: "button" %>
+                </div>
+            </div>
         </div>
         <h4>Shelf</h4>
-        <div class="shelf_pulldown">
-            <%= f.collection_select :shelf_id, @shelf.select("id,name") ,:id,:name ,include_blank: "未分類" %>
+        <div class="shelf_pulldown form-group">
+            <%= f.collection_select :shelf_id,@shelf.select("id,name") ,:id,:name ,include_blank: "未分類", prompt: "",class: "form-control" %>
         </div>
-        <h4>詳細</h4>
-        <div class="text_field">
-            <%= f.text_area :detail,size: "20x10" %>
+        <div class="form-group">
+            <h4>詳細</h4>
+            <div class="text_field">
+                <%= f.text_area :detail,size: "20x10" %>
+            </div>
         </div>
         <% if !@refered_tip.nil? %>
             <%= f.hidden_field :refer_id, value: @refered_tip.id %>
@@ -33,13 +47,13 @@
                 </div>
             </div>
         <% end %>
-    </div>
-    <div class="button">
-        <%= f.submit yield(:button) , class: "btn btn-primary"%>
+        <div class="form-group">
+            <%= f.submit yield(:button) , class: "btn btn-primary"%>
+        </div>
     </div>
 <% end %>
 <% if !@tip.id.nil? && current_user?(@user) %>
-    <div class="button">
+    <div class="form-group ml-4">
         <%= button_to "Tipを削除する", [@user,@tip] , method: :delete, data:{ confirm:"Tipを削除してもよろしいですか?"},class:"btn btn-danger" %>
     </div>
 <% end %>

@@ -20,6 +20,30 @@ $(window).scroll ->
                 data: num: s
             )
             timerReset()
+        else if document.URL.match(url_users) && document.URL.match("following") 
+            s = $('.users').children('li').length
+            console.log(s)
+            $.ajax(
+                url: '/users/auto_load_followings',
+                type: 'GET',
+                data: {
+                    num: s,
+                    user_id: user_id
+                }
+            )
+            timerReset()
+        else if document.URL.match(url_users) &&  document.URL.match("followers")
+            s = $('.users').children('li').length
+            console.log(s)
+            $.ajax(
+                url: '/users/auto_load_followers',
+                type: 'GET',
+                data: {
+                    num: s,
+                    user_id: user_id
+                }
+            )
+            timerReset()
         else if document.URL == url_tips
             s = $('.tips').children('li').length
             #console.log(s)
@@ -35,7 +59,7 @@ $(window).scroll ->
             timerReset()
         else if document.URL.match(url_search)
             search_focus = $('.search_focus')[0].value
-            search_word = $('.search_field')[1].dataset['searchWord']
+            search_word = $('.search_field')[0].dataset['searchWord']
             if search_focus == "tips"
                 url = url_search +  '/auto_load_tips'
                 s = $('.tips').children('li').length
@@ -69,7 +93,8 @@ $ ->
     $('a[data-toggle="tab"]').on 'shown.bs.tab', (e) ->
         $('.search_focus')[0].value = e.target.dataset.value
         return
-  
+
+#ajax用のタイマー
 time = 0
 
 timer  = () ->
@@ -83,6 +108,7 @@ timerReset = () ->
 
 timer()
 
+#tutorialの呼び出し
 $(window).on 'load', ->
     if $('div').hasClass 'alert-activate'
         url = window.location.protocol + '//' + location.hostname + '/account_activations/tutorial'
@@ -110,3 +136,9 @@ $(window).on 'load', ->
                 return
     return
     
+$ ->
+    w = $(window).width()
+    x = 576
+    if x <= w
+        $('#shelf').addClass 'show'
+    return
