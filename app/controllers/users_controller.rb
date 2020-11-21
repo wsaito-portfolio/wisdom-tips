@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         @followers = @user.followers.where(activated: true).limit(20)
         redirect_to root_url and return unless @user.activated?
         #tutorialのdebug用
-        flash[:activate] = "Acount avtivated"
+        #flash[:activate] = "Acount avtivated"
     end
     
     def show_feed
