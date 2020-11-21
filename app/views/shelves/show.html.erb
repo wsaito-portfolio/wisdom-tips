@@ -3,7 +3,7 @@
  <%= render "users/user_profile"  %>
   <div class="col-sm-8">
     <div class="shelf_title border_line_bottom">
-      <h3>Tips (<%= @user.tips.count %>) > <%= @shelf.name %> (<%= @tips.count %>)</h3>
+      <h3>Tips (<%= @user.tips.where(delete_flg: false).count %>) > <%= @shelf.name %> (<%= @tips.count %>)</h3>
       <% if !@shelf.id.nil? %>
         <span class="shelf-edit"><%= link_to "編集", edit_user_shelf_path(@user,@shelf.id)%></span>
       <% end %>

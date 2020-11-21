@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :logged_in_user,only:[:edit,:update,:destroy,:following,:followers]
+    before_action :logged_in_user,only:[:edit,:update,:destroy,:following,:followers,:password]
     before_action :correct_user,only:[:edit,:update]
     before_action :admin_user,only: :destroy
     
@@ -12,7 +12,10 @@ class UsersController < ApplicationController
         @user_detail = @user.user_detail
         @likes = @user.likes
         @tips = @user.tips.where(delete_flg: false).limit(20)
+        @following = @user.following.where(activated: true).limit(20)
+        @followers = @user.followers.where(activated: true).limit(20)
         redirect_to root_url and return unless @user.activated?
+        #tutorialのdebug用
         flash[:activate] = "Acount avtivated"
     end
     
@@ -51,8 +54,12 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         ActiveRecord::Base.transaction do
             @user.update_attributes!(user_params)
-            @user.user_detail.update_attributes!(profile_description: user_params[:user_detail_attributes][:profile_description])
-            flash[:success] = "Prifile updated"
+            if user_params[:user_detail_attributes].nil?
+                flash[:success] = "パスワードが変更されました"
+            else
+                @user.user_detail.update_attributes!(profile_description: user_params[:user_detail_attributes][:profile_description])
+                flash[:success] = "プロフィールが変更されました"
+            end
             redirect_to @user
         rescue => e
             render 'edit'
@@ -68,28 +75,49 @@ class UsersController < ApplicationController
     def following
         @title = "Following"
         @user    = User.find(params[:id])
-        @users = @user.following.paginate(page: params[:page])
+        @users = @user.following.where(activated: true).limit(20)
+        @user_detail = @user.user_detail
         render 'show_follow'
     end
 
     def followers
         @title = "Followers"
         @user    = User.find(params[:id])
-        @users = @user.followers.paginate(page: params[:page])
+        @users = @user.followers.where(activated: true).limit(20)
+        @user_detail = @user.user_detail
         render 'show_follow'
+    end
+    
+    def password
+        @user = User.find(params[:id])
     end
     
     def auto_load
         from = params[:num].to_i + 1
         to   = params[:num].to_i + 20
-        @users = User.where(id: from..to)
+        @users = User.where(id: from..to).where(activated: true)
+        respond_to do |format|
+            format.js
+        end
+    end
+    
+    def auto_load_followers
+        @user = User.find(params[:user_id])
+        @users = @user.followers.where(activated: true).limit(20).offset(params[:num])
+        respond_to do |format|
+            format.js
+        end
+    end
+    
+    def auto_load_followings
+        @user = User.find(params[:user_id])
+        @users = @user.following.where(activated: true).limit(20).offset(params[:num])
         respond_to do |format|
             format.js
         end
     end
     
     private
-    
         def user_params
             params.require(:user).permit(:name,:email,:password,:password_confirmation,user_detail_attributes:[:id,:profile_description])
         end

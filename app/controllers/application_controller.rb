@@ -14,5 +14,4 @@ class ApplicationController < ActionController::Base
             @user = User.find(params[:user_id])
             redirect_to(root_url) unless current_user?(@user)
         end
-        
 end

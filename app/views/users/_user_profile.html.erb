@@ -1,38 +1,41 @@
 <aside class="col-sm-4">
-    <section class="user_info">
+    <section class="user_info p-0">
     <h1>
         <%= gravatar_for @user %>
         <%= @user.name %>
     </h1>
-        <div class="profile" , data-id= <%= @user.id %> >
-            <% if !@user_detail.profile_description.nil? %>
-                <%= simple_format(@user_detail.profile_description) %>
-            <% end %>
-        </div>
-    </section>
-    <section>
-        <% if current_user?(@user) %>
-        <div class="text-center">
-            <div class="col-md-2" >
-                <%= link_to "Tipsを投稿", new_user_tip_path(@user), class: "btn btn-primary align-center" %>
-            </div>
-            <div class="col-md-2">
-                <%= link_to "Shelfを作成", new_user_shelf_path(@user), class: "btn btn-primary align-center" %>
-            </div>
-        </div>
+    <div class="profile" , data-id= <%= @user.id %> >
+        <% if !@user_detail.nil? && !@user_detail.profile_description.nil? %>
+            <%= simple_format(@user_detail.profile_description) %>
         <% end %>
+    </div>
     </section>
-         <section class="stats">
+    <% if current_user?(@user) %>
+        <section class="mt-0 p-0">
+            <div class="row">
+                <div class="col-lg-6 text-lg-right col-sm-12 text-sm-center col-6 text-right my-2" >
+                    <%= link_to "Tipsを投稿", new_user_tip_path(@user), class: "btn btn-primary align-center" %>
+                </div>
+                <div class="col-lg-6 text-lg-left  col-sm-12 text-sm-center col-6 text-left my-2">
+                    <%= link_to "Shelfを作成", new_user_shelf_path(@user), class: "btn btn-primary align-center" %>
+                </div>
+            </div>
+        </section>
+    <% end %>
+    <section class="stats row">
         <%= render 'shared/stats' %>
-     </section>
+    </section>
     <section>
         <div class="shelf_margin">
-            <ol class="shelves">
-                <li><%= link_to "すべて", @user %></li>
-                <li><%= link_to "未分類", user_shelf_path(@user,:nil) %></li>
+            <a href="#shelf" class="dropdown-toggle collapsed text-body h4" data-toggle="collapse" aria-expanded="true" role="button" aria-controls="shelf">
+                Shelf<b class="caret"></b>
+            </a>
+            <ol class="shelves collapse" id="shelf">
+                <li><%= link_to "すべて", @user ,class: "btn-link" %></li>
+                <li><%= link_to "未分類", user_shelf_path(@user,:nil),class: "btn-link" %></li>
                 <% @user.shelves.each do |shelf| %>
                     <% if !shelf.id.nil? %>
-                        <li><%= link_to shelf.name, user_shelf_path(@user,shelf.id) %></li>
+                        <li><%= link_to shelf.name, user_shelf_path(@user,shelf.id),class: "btn-link" %></li>
                     <% end %>
                 <% end %>
             </ol>

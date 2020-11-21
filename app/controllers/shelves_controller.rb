@@ -30,12 +30,12 @@ class ShelvesController < ApplicationController
         @user_detail = @user.user_detail
         if params[:id] === "nil"
             @shelf = Shelf.new(name: "未分類")
-            @tips = @user.tips.where(shelf_id: nil)
+            @tips = @user.tips.where(shelf_id: nil).where(delete_flg: false)
         else
             @shelf = @user.shelves.find(params[:id])
-            @tips = @user.tips.where(shelf_id: params[:id])
+            @tips = @user.tips.where(shelf_id: params[:id]).where(delete_flg: false)
         end
-        render 
+        render 'show'
     end
     
     def destroy

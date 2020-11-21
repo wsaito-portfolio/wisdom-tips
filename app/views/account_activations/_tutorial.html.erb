@@ -2,13 +2,17 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
 				<h3 class="modal-title">Tips shelfへようこそ</h3>
 			</div>
 			<div class="modal-body">
-				<div>Tips ShelfはTips共有SNSサービスです。</div>
-				<div>日常で得た生き抜くためのヒント(Tip)を記録し、自分だけの本棚(Shelf)に蓄積できます。</div>
-				<div>世界中の人とTipsを共有して、明日をよりよく生き抜こう!</div>
+				<div class="h-25 ">
+					<div>Tips ShelfはTips共有SNSサービスです。</div>
+					<div>日常で得た生き抜くためのヒント(Tip)を記録し、自分だけの本棚(Shelf)に蓄積できます。</div>
+				</div>
+				<div class="h-75">	
+					<%=  image_tag("home.png" , class: "img-fluid d-none d-md-inline") %>
+					<%=  image_tag("home_smp.png" , class: "img-fluid img-smp d-block d-md-none mx-auto") %>
+				</div>
 			</div>
 			<div class="modal-footer">
 				<div class="btn btn-primary modal_switch"  data-source="modal1" data-target="modal2">
@@ -22,13 +26,18 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
 				<h3 class="modal-title">Tipを投稿する</h3>
 			</div>
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="h-25">
 					<div>Tipはタイトルといくつかの理由の形で投稿できます。</div>
 					<div>シンプルな形に整理してみんなと共有しましょう。</div>
 				</div>
+				<div class="h-75">	
+					<%=  image_tag("tip.png" , class: "img-fluid d-none d-md-inline") %>
+					<%=  image_tag("tip_smp.png" , class: "img-fluid img-smp d-block d-md-none mx-auto") %>
+				</div>
+			</div>
 			<div class="modal-footer">
     			<div class="btn btn-primary modal_switch"  data-source="modal2" data-target="modal3">
 					次へ
@@ -41,13 +50,18 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
 				<h3 class="modal-title">Shelfを使う</h3>
 			</div>
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="h-25">
 					<div>Shelfを使ってTipをテーマごとに分類できます。</div>
 					<div>画面左プロフィールのボタンからShelfを作成できます。</div>
 				</div>
+				<div class="h-75">	
+					<%=  image_tag("shelf.png" , class: "img-fluid d-none d-md-inline") %>
+					<%=  image_tag("shelf_smp.png" , class: "img-fluid img-smp d-block d-md-none mx-auto") %>
+				</div>
+			</div>
 			<div class="modal-footer">
     			<div class="btn btn-primary modal_switch"  data-source="modal3" data-target="modal4">
 					次へ
@@ -60,12 +74,17 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-				<h3 class="modal-title">Tip & ユーザー検索機能</h3>
+				<h3 class="modal-title">Tip&ユーザー検索機能</h3>
 			</div>
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="h-25">
 					<div>ヘッダーの検索ボックスから気になるTip、ユーザーを検索できます。</div>
 				</div>
+				<div class="h-75">	
+					<%=  image_tag("search.png" , class: "img-fluid d-none d-md-inline") %>
+					<%=  image_tag("search_smp.png" , class: "img-fluid img-smp-search d-block d-md-none mx-auto") %>
+				</div>
+			</div>
 			<div class="modal-footer">
     			<div class="btn btn-primary modal_switch"  data-source="modal4" data-target="modal5">
 					次へ
@@ -78,13 +97,18 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
 				<h3 class="modal-title">共有機能</h3>
 			</div>
-				<div class="modal-body">
+			<div class="modal-body">
+				<div class="h-25">
 					<div>お気に入りのTipにいいねしたり、みんなのTipを引用して自分用のTipを投稿できます。</div>
 					<div>お気に入りのユーザーを見つけてフォローできます。</div>
 				</div>
+				<div class="h-75">	
+					<%=  image_tag("share.png" , class: "img-fluid d-none d-md-inline") %>
+					<%=  image_tag("share_smp.png" , class: "img-fluid img-smp d-block d-md-none mx-auto") %>
+				</div>
+			</div>
 			<div class="modal-footer">
     			<div class="btn btn-primary"  data-dismiss="modal">
 					さっそく使ってみる

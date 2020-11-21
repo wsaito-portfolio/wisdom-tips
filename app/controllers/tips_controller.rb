@@ -23,13 +23,12 @@ class TipsController < ApplicationController
     end
     
     def destroy
-        @tip = Tip.find(params[:id]).toggle(:delete_flg)
+        @tip = Tip.find(params[:id]).toggle!(:delete_flg)
         flash[:success]= "Tipを削除しました。"
         redirect_to current_user
     end
     
     def update
-        
         @tip = Tip.find(params[:id])
         @user = User.find(@tip.user_id)
         
@@ -88,7 +87,7 @@ class TipsController < ApplicationController
     
     def auto_load
         @user = User.find(params[:user_id])
-        @tips = Tip.where(user_id: params[:user_id]).limit(20).offset(params[:num])
+        @tips = Tip.where(user_id: params[:user_id]).where(delete_flg: false).limit(20).offset(params[:num])
         respond_to do |format|
             format.js
         end
