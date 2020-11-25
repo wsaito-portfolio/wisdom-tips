@@ -3,7 +3,7 @@
 one:
   content: MyString
   user: one
-
+  
 two:
   content: MyString
   user: two
@@ -18,3 +18,25 @@ archers_tip:
   created_at: <%= 10.minutes.ago %>
   user: archer
   
+victorias_tip:
+  content: "hoge"
+  created_at: <%= 10.minutes.ago %>
+  user: victoria
+
+refer_tip:
+  content: "よゆうをもって行動すべきである。"
+  created_at: <%= 10.minutes.ago %>
+  user: victoria
+  refer_id: 1
+
+refered_tip:
+  id: 1
+  content: "急いで行動すべきである。"
+  user: lana
+  created_at: <%= 10.minutes.ago %>
+  updated_at: <%= 10.minutes.ago %>
+  shelf_id: nil
+  detail: nil
+  refer_id: nil
+  delete_flg: false
+  parent_id: false

@@ -14,10 +14,11 @@ class TipsController < ApplicationController
     def create
         @user = current_user
         @tip = @user.tips.build(tip_params)
-        if @tip.save!
+        ActiveRecord::Base.transaction do
+            @tip.save!
             flash[:success] = "tipを投稿しました。"
             redirect_to current_user
-        else
+        rescue => e
             render 'new'
         end
     end

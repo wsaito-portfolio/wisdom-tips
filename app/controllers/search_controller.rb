@@ -2,11 +2,11 @@ class SearchController < ApplicationController
     def index
         @user = current_user
         
-        u_search_result = User.search(params[:search])
+        u_search_result = User.search(params[:search]).where(activated: true)
         @users = u_search_result.limit(20)
         @users_count = u_search_result.count
         
-        t_search_result = Tip.search(params[:search])
+        t_search_result = Tip.search(params[:search]).where(delete_flg: false)
         @tips = t_search_result.limit(20)
         @tips_count = t_search_result.count
         @search = params[:search]
@@ -32,14 +32,5 @@ class SearchController < ApplicationController
         respond_to do |format|
             format.js
         end
-    end
-    #ajaxで作る?
-    def search_user(word)
-        
-    end
-    
-    #ajaxで作る?
-    def search_tips(word)
-        
     end
 end
