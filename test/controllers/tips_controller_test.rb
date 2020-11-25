@@ -122,12 +122,6 @@ class TipsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to login_url
     end
     
-    test "should not get refer when wrong user" do
-        log_in_as(@other_user)
-        get user_tip_refer_path(@user,@refer_tip)
-        assert_redirected_to root_url
-    end
-    
     test "should get refer when correct user" do
         log_in_as(@user)
         get user_tip_refer_path(@user,@refer_tip)
