@@ -16,3 +16,7 @@ michael_details:
 archer_details:
     profile_description: "自己紹介"
     user: archer
+    
+victoria_details:
+    profile_description: "自己紹介"
+    user: victoria

@@ -11,3 +11,22 @@ two:
 tdd_reason:
     content: "tdd行うことで将来的なバグを予防することができる。"
     tip: tdd
+    
+archers_tip_reason:
+    content: "時間は限られているから。"
+    tip: archers_tip
+    
+victoria_tip_reason:
+    content: "hoge"
+    tip: victorias_tip
+    
+refer_tip_reason:
+    content: "余裕を持つことが大事だから"
+    tip: refer_tip
+    
+refered_tip_reason:
+    id: 1
+    content: "急ぐことが大事だから"
+    tip_id: 1
+    created_at: <%= 10.minutes.ago %>
+    updated_at: <%= 10.minutes.ago %>

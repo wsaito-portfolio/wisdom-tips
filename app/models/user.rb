@@ -97,7 +97,7 @@ class User < ApplicationRecord
     
     # 現在のユーザーがフォローしてたらtrueを返す
     def following?(other_user)
-    following.include?(other_user)
+        following.include?(other_user)
     end
     
     def self.search(search)
