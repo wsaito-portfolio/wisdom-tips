@@ -1,6 +1,6 @@
 <%= form_for(current_user.likes.build, remote: true, html:{class:"like_form"}) do |f| %>
     <span>
-        <%= hidden_field_tag :user_id, @user.id %>
+        <%= hidden_field_tag :user_id, current_user.id %>
         <%= hidden_field_tag :tip_id, tip.id %>
     </span>
     <%= button_tag :type => "submit", :class =>"btn btn-light" do %>

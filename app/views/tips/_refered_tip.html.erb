@@ -1,0 +1,32 @@
+<li id="tip-<%= tip.id %>">
+    <%= link_to gravatar_for(tip.user, size: 50), tip.user %>
+    <span class="user">
+        <%= link_to tip.user.name, tip.user %>
+    </span>
+    <% if tip.delete_flg && (@refered_child_tip.nil? || @refered_child_tip.delete_flg ) %>
+        <div class="margin_l_60px">
+           このTipは削除されました。
+        </div>
+    <% else %>
+        <%= link_to user_tip_path(user,tip.id), class:"tips_detail" do %>
+            <span class="tip_content">
+                <%= tip.content %>
+            </span>
+            <ol class="reason_content" %>
+                <% tip.reasons.each do  |reason| %>
+                    <li class="text-break"><%= reason.content %></li>
+                <% end %>
+            </ol>
+            <div>
+                <span class="timestamp">
+                     Posted <%= time_ago_in_words(tip.created_at) %> ago.
+                </span>
+            </div>
+            <% if tip.delete_flg && !@refered_child_tip.nil? && !@refered_child_tip.delete_flg %>
+                <div class="margin_l_60px">
+                     <%= link_to "このTipは更新されました。", user_tip_path(user,@refered_child_tip), class:"text-right"  %>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
+</li>

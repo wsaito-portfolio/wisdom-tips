@@ -24,7 +24,7 @@ class TipCreateTest < ActionDispatch::IntegrationTest
                                             content: content,
                                             shelf_id: shelf_id,
                                             refer_id: nil,
-                                            parent_id: nil,
+                                            child_id: nil,
                                             detail: detail,
                                             reasons_attributes: [
                                                 {
@@ -56,7 +56,7 @@ class TipCreateTest < ActionDispatch::IntegrationTest
                                             content: content,
                                             shelf_id: shelf_id,
                                             refer_id: nil,
-                                            parent_id: nil,
+                                            child_id: nil,
                                             detail: detail,
                                             reasons_attributes: [
                                                 {
@@ -89,7 +89,7 @@ class TipCreateTest < ActionDispatch::IntegrationTest
                                             content: content,
                                             shelf_id: shelf_id,
                                             refer_id: nil,
-                                            parent_id: nil,
+                                            child_id: nil,
                                             detail: detail,
                                             reasons_attributes: [
                                                 {
@@ -109,7 +109,7 @@ class TipCreateTest < ActionDispatch::IntegrationTest
         assert_equal content, posted_tip.content
         assert_equal shelf_id, posted_tip.shelf_id
         assert_nil posted_tip.refer_id
-        assert_nil posted_tip.parent_id
+        assert_nil posted_tip.child_id
         assert_equal detail, posted_tip.detail
         assert_equal reason1, posted_tip.reasons[0].content
         assert_equal reason2, posted_tip.reasons[1].content
@@ -135,7 +135,7 @@ class TipCreateTest < ActionDispatch::IntegrationTest
                                             content: content,
                                             shelf_id: shelf_id,
                                             refer_id: refer_id,
-                                            parent_id: nil,
+                                            child_id: nil,
                                             detail: detail,
                                             reasons_attributes: [
                                                 {
@@ -152,7 +152,7 @@ class TipCreateTest < ActionDispatch::IntegrationTest
         assert_equal content, posted_tip.content
         assert_equal shelf_id, posted_tip.shelf_id
         assert_equal refer_id,posted_tip.refer_id
-        assert_nil posted_tip.parent_id
+        assert_nil posted_tip.child_id
         assert_equal detail, posted_tip.detail
         assert_equal reason1, posted_tip.reasons[0].content
         

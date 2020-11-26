@@ -83,6 +83,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     
     #show
     test "should get show" do
+        log_in_as(@user)
         get user_path(@user)
         assert_response :success
     end

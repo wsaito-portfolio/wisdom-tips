@@ -9,7 +9,7 @@
        <% if !@refered_tip.nil? %>
             <h4>引用したTip</h4>
             <div class="tips refer">
-                <%= render partial: "tip",  locals:{tip: @refered_tip,user: @refered_user}%>
+                <%= render partial: "refered_tip",  locals:{tip: @refered_tip,user: @refered_user}%>
             </div>
         <% end %>
   </div>

@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20200622064303) do
     t.text "detail"
     t.integer "refer_id"
     t.boolean "delete_flg", default: false, null: false
-    t.integer "parent_id"
+    t.integer "child_id"
     t.index ["refer_id"], name: "index_tips_on_refer_id"
     t.index ["shelf_id"], name: "index_tips_on_shelf_id"
     t.index ["user_id", "created_at"], name: "index_tips_on_user_id_and_created_at"
