@@ -6,7 +6,7 @@
     <div class="col-sm-6 offset-sm-3">
         <div class="gravatar_edit">
             <%= gravatar_for @user %>
-            <a href="http://gravatar.com/emails" target="blank" rel="noopener">画像を変える</a> 
+            <a href="http://gravatar.com/emails" target="blank" rel="noopener">プロフィール画像はgravatarを利用しています。</a> 
         </div>
         <%= form_for @user, url: yield(:url) do |f| %>
             <%= render "shared/error_messages" , object: f.object %>

@@ -135,10 +135,3 @@ $(window).on 'load', ->
                     changeModal before, after
                 return
     return
-    
-$ ->
-    w = $(window).width()
-    x = 576
-    if x <= w
-        $('#shelf').addClass 'show'
-    return

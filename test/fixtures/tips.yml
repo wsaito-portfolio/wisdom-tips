@@ -39,4 +39,4 @@ refered_tip:
   detail: nil
   refer_id: nil
   delete_flg: false
-  parent_id: false
+  child_id: false

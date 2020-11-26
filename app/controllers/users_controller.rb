@@ -10,8 +10,10 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @user_detail = @user.user_detail
-        @likes = @user.likes
-        @tips = @user.tips.where(delete_flg: false).limit(20)
+        @likes = current_user.likes
+        tips = @user.tips.where(delete_flg: false)
+        @tips_count = tips.count
+        @tips = tips.limit(20)
         @following = @user.following.where(activated: true).limit(20)
         @followers = @user.followers.where(activated: true).limit(20)
         redirect_to root_url and return unless @user.activated?

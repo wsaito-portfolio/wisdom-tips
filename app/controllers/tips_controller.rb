@@ -41,12 +41,12 @@ class TipsController < ApplicationController
             #古いTipのdeleteフラグを立てる
             @tip.toggle!(:delete_flg)
             
-            #2個前以上の古いTipのparentIDを変更
-            old_tips = @user.tips.where(parent_id: @tip.id).
-            old_tips.update_attributes!(parent_id: new_tip.id)  if !old_tips.nil?
+            #2個前以上の古いTipのchildIDを変更
+            old_tips = @user.tips.where(child_id: @tip.id).
+            old_tips.update_attributes!(child_id: new_tip.id)  if !old_tips.nil?
             
-            #1個前のTipのparentIDを変更
-            @tip.update_attributes!(parent_id: new_tip.id)
+            #1個前のTipのchildIDを変更
+            @tip.update_attributes!(child_id: new_tip.id)
             
             flash[:success] = "Tipを更新しました。"
             redirect_to [@user,new_tip]
@@ -64,6 +64,15 @@ class TipsController < ApplicationController
             @refered_tip = Tip.find(@tip.refer_id)
             @refered_user = User.find(@refered_tip.user_id)
         end
+        
+        if @tip.delete_flg
+            @child_tip = Tip.where(id: @tip.child_id, user_id: @tip.user_id).order(id: "DESC").first
+        end
+        
+        if !@refered_tip.nil? &&@refered_tip.delete_flg 
+            @refered_child_tip = Tip.where(id: @refered_tip.child_id,user_id: @refered_tip.user_id).order(id: "DESC").first
+        end
+
     end
     
     def edit
@@ -100,6 +109,6 @@ class TipsController < ApplicationController
         end
         
         def tip_params_update
-            params.require(:tip).permit(:content, :shelf_id, :refer_id, :parent_id,:detail,reasons_attributes:[:content,:_destroy])
+            params.require(:tip).permit(:content, :shelf_id, :refer_id, :child_id,:detail,reasons_attributes:[:content,:_destroy])
         end
 end

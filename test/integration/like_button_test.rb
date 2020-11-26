@@ -16,5 +16,13 @@ class LikeButtonTest < ActionDispatch::IntegrationTest
         assert_difference ['Like.where(user_id: @user1.id).count','Like.where(tip_id: like_tip.id).count'], 1 do
             post likes_path, params:{user_id: @user1.id ,tip_id: like_tip.id} , xhr: true
         end
+        
+        like = @user1.likes.find_by(user_id: @user1, tip_id: like_tip.id)
+        
+        #user1がuser2の1番目のtipに対して「いいね」をキャンセルすると、ユーザーとtipのいいねが減る。
+        assert_difference ['Like.where(user_id: @user1.id).count','Like.where(tip_id: like_tip.id).count'], -1 do
+            delete like_path(like) , params:{user_id: @user1.id} ,xhr: true
+        end
     end
+    
 end

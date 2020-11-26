@@ -13,7 +13,6 @@ class TipDestoryTest < ActionDispatch::IntegrationTest
         log_in_as(@other)
         assert_no_difference 'Tip.where(delete_flg: false).count' do
             assert_no_difference 'Tip.where(delete_flg: true).count' do
-            
                 delete user_tip_path(@user,@tip) 
             end
         end
@@ -26,7 +25,6 @@ class TipDestoryTest < ActionDispatch::IntegrationTest
         
         assert_difference 'Tip.where(delete_flg: false).count', -1 do
             assert_difference 'Tip.where(delete_flg: true).count', 1 do
-            
                 delete user_tip_path(@user,@tip) 
             end
         end
