@@ -17,7 +17,7 @@ gem "font-awesome-rails"
 gem 'font-awesome-sass'
 
 #bootstrap4変更用
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 #gem 'bootstrap-sass'
 gem 'jquery-rails', '4.3.1'
 gem 'sass-rails'
