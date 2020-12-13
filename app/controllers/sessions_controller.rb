@@ -26,4 +26,11 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+  
+  def easy_login
+    flash[:activate] = "Acount avtivated"
+    user = User.find_by(email: "wsaito.jlo@gmail.com")
+    log_in user
+    redirect_to user
+  end
 end
