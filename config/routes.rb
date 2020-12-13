@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
 
   get 'password_resets/new'
-
   get 'password_resets/edit'
-
   get 'sessions/new'
-
+  
   root 'static_pages#home'
   get '/help', to:'static_pages#help'
   get '/about', to:'static_pages#about'
@@ -16,6 +14,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+  get '/easy_login', to: 'sessions#easy_login'
   delete 'logout', to: 'sessions#destroy' 
   get '/search', to: 'search#index'
   get '/search/auto_load_tips', to: 'search#auto_load_tips'

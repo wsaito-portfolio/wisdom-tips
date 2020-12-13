@@ -109,11 +109,10 @@ timerReset = () ->
 timer()
 
 #tutorialの呼び出し
-$(window).on 'load', ->
+$(window).on 'turbolinks:load', ->
     if $('div').hasClass 'alert-activate'
         url = window.location.protocol + '//' + location.hostname + '/account_activations/tutorial'
         s = 'active'
-        console.log(url)
         $.ajax(
             url: url,
             type: 'GET',
@@ -121,7 +120,6 @@ $(window).on 'load', ->
                 ).done (response) ->
             $('#modal1').modal
                 backdrop: false
-            console.log($('#modal1'))
             
             changeModal = (beforeModal, afterModal) ->
                     $('#' + beforeModal).modal 'hide'
